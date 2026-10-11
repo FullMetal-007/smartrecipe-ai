@@ -265,60 +265,6 @@ Accuracy, precision, recall, and F1 require a clearly defined relevant/irrelevan
 
 If reporting previously obtained metrics, identify the test set size and relevance-judgment method, and make clear whether the figures are baseline or AI-enhanced results.
 
-## Deployment: important Vercel note
-
-**The current user interface is Streamlit. Vercel is not a straightforward, native deployment target for a conventional Streamlit server**, because Streamlit relies on a persistent Python process and WebSocket-based sessions. Vercel's Python functions are serverless functions and are not a drop-in host for a long-running Streamlit server.
-
-Recommended paths:
-
-### Option A — Deploy the existing Streamlit application
-
-Deploy the project to a hosting service that supports long-running Streamlit/Python applications. Configure the required environment variables and ensure the dataset and model artifacts are available at runtime. This is the least disruptive option for the current codebase.
-
-### Option B — Use Vercel for a web frontend
-
-If Vercel is a requirement, use it for a separate frontend (for example, a Next.js application) and expose the Python recommendation pipeline through a separately hosted API service. The API service must load the model artifacts and securely store the Gemini key. The Vercel frontend calls the API over HTTPS.
-
-```text
-Browser
-   |
-   v
-Vercel frontend (Next.js / React)
-   |
-   | HTTPS API request
-   v
-Hosted Python API (FastAPI or equivalent)
-   |
-   +--> Baseline retrieval and local ranking
-   |
-   +--> Gemini enhancement
-   |
-   +--> Recipe/model artifacts
-```
-
-This second architecture requires additional API endpoints, CORS configuration, deployment settings, and a decision about how to host the model artifacts. It is not achieved by simply importing `streamlit_app.py` into Vercel.
-
-### Deployment checklist
-
-- [ ] Decide whether to keep Streamlit or build a separate Vercel frontend.
-- [ ] Check the repository's actual file structure and dependency manifest.
-- [ ] Store `GEMINI_API_KEY` in the hosting provider's environment settings; never expose it to browser code.
-- [ ] Ensure model artifacts and datasets are available to the deployed backend.
-- [ ] Test cold starts, memory use, request timeouts, and API quota errors.
-- [ ] Add appropriate error handling and avoid returning secret values in logs.
-- [ ] Verify that the deployed app returns real recommendations and that AI status is clearly shown.
-
-## Environment variables
-
-| Variable | Purpose |
-|---|---|
-| `GEMINI_API_KEY` | Secret key for Gemini requests |
-| `GEMINI_MODEL` | Gemini model name |
-| `LLM_PROVIDER` | Configured LLM provider |
-| `AI_CACHE_ENABLED` | Enables/disables AI result caching, if supported by the current code |
-
-Check `backend/config.py` for the complete and authoritative configuration schema. Set secrets in the deployment platform's environment settings rather than in frontend code or committed files.
-
 ## Privacy, safety, and limitations
 
 - Do not commit API keys, private environment files, or sensitive runtime logs.
@@ -329,21 +275,10 @@ Check `backend/config.py` for the complete and authoritative configuration schem
 - Document dataset provenance, licensing, and any personal or sensitive data before public release.
 - Only claim improvements over the baseline when supported by a fair evaluation on fixed queries and independent labels.
 
-## Roadmap
-
-- [ ] Add a repeatable evaluation dataset with human relevance judgments.
-- [ ] Compare baseline and AI-enhanced ranking on identical queries.
-- [ ] Report Precision@K, MRR@K, and NDCG@K with evaluation details.
-- [ ] Improve explicit required-ingredient checks and document their limitations.
-- [ ] Track latency, cache hits, and API calls without logging secrets.
-- [ ] Add automated tests for constraint violations, malformed AI output, and fallback behaviour.
-- [ ] If using Vercel, separate the frontend from the Python recommendation API.
-
 ## Acknowledgements
 
 Built as an AI/ML recipe recommendation project exploring content-based retrieval, hybrid representations, constraint-aware ranking, and generative AI assistance.
 
 ---
 
-**Maintainer:** YOUR NAME  
 **Repository:** `smartrecipe-ai`
