@@ -1,0 +1,1 @@
+"""SmartRecipe AI backend package."""

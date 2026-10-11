@@ -1,0 +1,11 @@
+# Runtime dependencies. Python 3.10 is recommended for compatibility with saved baseline artifacts.
+streamlit==1.65.0
+pandas==2.3.3
+numpy==1.26.4
+scikit-learn==1.0.2
+nltk==3.10.3
+gensim==4.4.0
+scipy==1.15.3
+pydantic>=2.10,<3
+google-genai>=1.30,<2
+python-dotenv>=1.0,<2

@@ -1,0 +1,18 @@
+# Secrets and local environment
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.pkl
+
+# Large baseline artifacts are distributed separately when appropriate
+*.log
+logs/
+.ai_cache/
+
+# Local experiment outputs
+*.tmp
+
+# Generated experiment outputs (selectively copy into submission evidence if needed)
+outputs/experiment_results_*.csv
+outputs/experiment_results_*.json

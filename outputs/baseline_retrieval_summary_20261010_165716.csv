@@ -1,0 +1,10 @@
+test_id,candidates_returned,top_similarity,hard_constraint_passes,time_compliant_candidates,retrieval_latency_seconds,hard_constraint_pass_rate_top5_pct
+T01,5,0.1449,0,5,0.578484,0.0
+T02,5,0.1091,0,1,0.568917,0.0
+T03,5,0.0879,0,0,0.588981,0.0
+T04,5,0.0861,0,1,0.583113,0.0
+T05,5,0.1244,0,5,0.545488,0.0
+T06,5,0.0923,4,5,0.523392,80.0
+T07,5,0.112,0,3,0.493088,0.0
+T08,5,0.0743,3,5,0.49255,60.0
+T09,5,0.0861,0,1,0.484732,0.0

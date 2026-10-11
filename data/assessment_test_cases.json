@@ -1,0 +1,47 @@
+[
+  {
+    "test_id": "T01",
+    "request": "I have chicken and a few eggs. I want something healthy and easy to prepare.",
+    "purpose": "Multiple required ingredients plus healthy and easy preferences"
+  },
+  {
+    "test_id": "T02",
+    "request": "I have chicken, rice, spinach, tomato and onion. I want a high protein dinner for two under 30 minutes.",
+    "purpose": "Ingredient coverage, nutrition preference, serving count and hard time limit"
+  },
+  {
+    "test_id": "T03",
+    "request": "I have rice, eggs, carrot, broccoli, onion and soy sauce. I want a vegetarian dinner for two under 20 minutes.",
+    "purpose": "Multiple ingredients, vegetarian preference and tight time limit"
+  },
+  {
+    "test_id": "T04",
+    "request": "I have pasta, tomato, spinach, garlic and cheese. Suggest an easy vegetarian meal under 25 minutes.",
+    "purpose": "Ingredient coverage, vegetarian preference and easy meal"
+  },
+  {
+    "test_id": "T05",
+    "request": "I have chicken and rice but I need a vegan meal.",
+    "purpose": "Conflicting requirements; the system should report no valid match rather than invent a solution"
+  },
+  {
+    "test_id": "T06",
+    "request": "I only have rice, salt and oil. Suggest a simple meal and clearly say if extra ingredients are needed.",
+    "purpose": "Sparse pantry and transparent missing ingredient handling"
+  },
+  {
+    "test_id": "T07",
+    "request": "I have chicken, rice, carrots and broccoli. Suggest dinner for two in 30 minutes or less. I have a peanut allergy; exclude peanuts and peanut-derived ingredients.",
+    "purpose": "Allergen exclusion and safety caveat; dataset text checks are not allergy certification"
+  },
+  {
+    "test_id": "T08",
+    "request": "I'm tired after university and don't want to spend much time cooking. I have vegetables and rice. Suggest something filling, reasonably healthy and easy to make.",
+    "purpose": "Ambiguous conversational natural-language request"
+  },
+  {
+    "test_id": "T09",
+    "request": "I have pasta, tomato, spinach, garlic and cheese. Suggest an easy vegetarian meal under 25 minutes.",
+    "purpose": "Vegetarian multi-ingredient time-constrained repeatability check"
+  }
+]
